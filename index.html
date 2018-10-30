@@ -41,5 +41,53 @@
 		</a>
 	</nav>
 	
+	
+	<script type="text/javascript">
+		var weixinArray = [
+			{
+				pageId: "weixin-chatlist.html",
+				pageUrl: "weixin-chatlist.html"
+			},
+			{
+				pageId: "weixin-contact.html",
+				pageUrl: "weixin-contact.html"
+			},
+			{
+				pageId: "weixin-discover.html",
+				pageUrl: "weixin-discover.html"
+			},
+			{
+				pageId: "weixin-me.html",
+				pageUrl: "weixin-me.html"
+			}
+		];
+		
+		var weixinStyle = {
+			top: "44px",
+			bottom: "50px"
+		};
+		
+		mui.plusReady(function() {
+			
+			// 获取当前的webview对象
+			var indexWebview = plus.webview.currentWebview();
+			
+			// 向当前的主页webview追加子页的4张webview对象
+			for (var i = 0; i < weixinArray.length; i++) {
+				var weixinPage = plus.webview.create(weixinArray[i].pageUrl,
+					weixinArray[i].pageId,
+					weixinStyle
+				);
+				// 隐藏webview窗口
+				weixinPage.hide();
+				// 追加每一个子页面到当前主页面
+				indexWebview.append(weixinPage);
+			}
+			plus.webview.show(weixinArray[0].pageId);
+			
+		});
+		
+	</script>
+	
 </body>
 </html>
